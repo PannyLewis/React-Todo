@@ -24,7 +24,7 @@ const todos = [
     completed: false,
   },
 ];
-
+console.log(todos);
 class App extends React.Component {
   // this component is going to take care of state, and any change handlers you need to work with your state
 
@@ -32,7 +32,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos,
+      todos: todos,
     };
   }
 
@@ -68,7 +68,8 @@ class App extends React.Component {
     });
   };
 
-  clearcompleted = (e) => {
+  // deletes all the crossed off items
+  clearCompleted = (e) => {
     e.preventDefault(); // prevents page from refreshing
     // if item is completed (item.completed is true) then filter out
     this.setState({
@@ -87,7 +88,7 @@ class App extends React.Component {
         <TodoList
           todos={this.state.todos}
           toggleItem={this.toggleItem}
-          clearcompleted={this.clearcompleted}
+          clearCompleted={this.clearcompleted}
         />
       </div>
     );
