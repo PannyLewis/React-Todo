@@ -55,16 +55,18 @@ class App extends React.Component {
     // map over array
     // when we find the item we clicked, toggle the completed field
     // otherwise return the item untouched
-    this.setState({
-      todos: this.state.todos.map((item) => {
-        if (itemId === item.id) {
-          return {
-            ...item,
-            completed: !item.completed,
-          };
-        }
+    const newtodolist = this.state.todos.map((item) => {
+      if (item.id === itemId) {
+        return {
+          ...item,
+          completed: !item.completed,
+        };
+      } else {
         return item;
-      }),
+      }
+    });
+    this.setState({
+      todos: newtodolist,
     });
   };
 
@@ -73,7 +75,11 @@ class App extends React.Component {
     e.preventDefault(); // prevents page from refreshing
     // if item is completed (item.completed is true) then filter out
     this.setState({
-      todos: this.state.todos.filter((item) => !item.completed),
+      todos: this.state.todos.filter((item) => {
+        if (item.completed === false) {
+          return {};
+        }
+      }),
     });
   };
 
@@ -88,7 +94,7 @@ class App extends React.Component {
         <TodoList
           todos={this.state.todos}
           toggleItem={this.toggleItem}
-          clearCompleted={this.clearcompleted}
+          clearCompleted={this.clearCompleted}
         />
       </div>
     );
