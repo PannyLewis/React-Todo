@@ -40,7 +40,7 @@ class App extends React.Component {
   addItem = (e, item) => {
     e.preventDefault();
     const newItem = {
-      name: item,
+      task: item,
       id: Date.now(),
       completed: false,
     };
